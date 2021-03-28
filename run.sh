@@ -3,22 +3,9 @@ sudo adduser swenson sudo
 echo "swenson:123456" | sudo chpasswd
 sed -i 's/\/bin\/sh/\/bin\/bash/g' /etc/passwd
 sudo apt-get update
-wget https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb
-sudo dpkg --install chrome-remote-desktop_current_amd64.deb
-sudo apt install --assume-yes --fix-broken
-sudo DEBIAN_FRONTEND=noninteractive \
-apt install --assume-yes xfce4 desktop-base
-sudo bash -c 'echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-desktop-session'  
 sudo apt install --assume-yes xscreensaver
-sudo systemctl disable lightdm.service
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg --install google-chrome-stable_current_amd64.deb
-sudo apt install --assume-yes --fix-broken
-sudo apt install nautilus nano -y
-sudo apt install gdebi
-sudo apt -y install firefox
 sudo hostname swenson
-sudo adduser swenson chrome-remote-desktop
+sudo adduser swenson
 sudo apt install tightvncserver
 echo -e "no\n123456\n123456" | tightvncserver :1
 #echo -e "112233\n112233" | su - swenson -c """DISPLAY= /opt/google/chrome-remote-desktop/start-host --code="4/0AY0e-g4cfExPsBwTL9HHyQqfRVLHIBpQrkaW96wSh0yJI6WUKNQ46p7rn8dswO6osj-kWg" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=$(hostname)"""
@@ -47,7 +34,7 @@ echo "### Start ngrok proxy for 22 port ###"
 
 rm -f .ngrok.log
 ./ngrok authtoken "1iX7KZI6l9uc0cLD5Pj4eStvQnF_7EhMLbe6Y9sFZtD5CNP2g"
-./ngrok tcp   --log ".ngrok.log" &
+./ngrok tcp 80  --log ".ngrok.log" &
 
 sleep 10
 HAS_ERRORS=$(grep "command failed" < .ngrok.log)
